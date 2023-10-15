@@ -7,7 +7,7 @@ import br.com.fila.app.filadeespera.model.entity.Person;
 
 public class PersonConfigMapper {
     
-    private PersonConfigMapper(){};
+    private PersonConfigMapper(){}
 
     private static final ModelMapper modelMapper = new ModelMapper(){};
 
