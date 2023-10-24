@@ -9,6 +9,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,7 +21,6 @@ import br.com.fila.app.filadeespera.exception.BusinessException;
 import br.com.fila.app.filadeespera.model.entity.Person;
 import br.com.fila.app.filadeespera.repository.PersonRepository;
 import br.com.fila.app.filadeespera.service.PersonService;
-import lombok.var;
 
 @SpringBootTest
 class PersonServiceImplTest {
@@ -38,7 +39,7 @@ class PersonServiceImplTest {
     
     @Test
     void shouldCreatePersonWithSuccess() {
-        var person = PersonSeviceImplMocks.fullPersonDataMock();
+        Person person = PersonSeviceImplMocks.fullPersonDataMock();
         personRepository.save(person);
         verify(personRepository, times(1)).save(person);
         verifyNoMoreInteractions(personRepository);
@@ -63,7 +64,7 @@ class PersonServiceImplTest {
 
     @Test
     void shouldFindByIdPersonWithSucess(){
-        var personOptinal = PersonSeviceImplMocks.fullOptinalPersonDataMock();
+        Optional<Person> personOptinal = PersonSeviceImplMocks.fullOptinalPersonDataMock();
         when(personRepository.findById(anyLong())).thenReturn(personOptinal);
         verify(personRepository,times(0)).findById(anyLong());
         verifyNoMoreInteractions(personRepository);
