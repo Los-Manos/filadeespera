@@ -39,7 +39,7 @@ class PersonServiceImplTest {
     
     @Test
     void shouldCreatePersonWithSuccess() {
-        Person person = PersonSeviceImplMocks.fullPersonDataMock();
+        var person = PersonSeviceImplMocks.fullPersonDataMock();
         personRepository.save(person);
         verify(personRepository, times(1)).save(person);
         verifyNoMoreInteractions(personRepository);
@@ -64,7 +64,7 @@ class PersonServiceImplTest {
 
     @Test
     void shouldFindByIdPersonWithSucess(){
-        Optional<Person> personOptinal = PersonSeviceImplMocks.fullOptinalPersonDataMock();
+        var personOptinal = PersonSeviceImplMocks.fullOptinalPersonDataMock();
         when(personRepository.findById(anyLong())).thenReturn(personOptinal);
         verify(personRepository,times(0)).findById(anyLong());
         verifyNoMoreInteractions(personRepository);
