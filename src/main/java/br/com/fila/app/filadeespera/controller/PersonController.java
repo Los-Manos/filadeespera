@@ -1,7 +1,8 @@
 package br.com.fila.app.filadeespera.controller;
 
 import org.springframework.http.ResponseEntity;
-import br.com.fila.app.filadeespera.model.dto.PersonDto;
+import br.com.fila.app.filadeespera.model.dto.PersonDTO;
+import br.com.fila.app.filadeespera.model.entity.Person;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -15,6 +16,13 @@ public interface PersonController {
         @ApiResponse(responseCode = "201" , description = "Criação de cadastro criado com sucesso"),
         @ApiResponse(responseCode = "400", description = "Dados Invalídos",content = @Content)
     })
-    public ResponseEntity<Void> create(PersonDto personDto);
+    public ResponseEntity<Void> create(PersonDTO personDto);
+
+    @Operation(summary = "Realiza a busca do person pelo ID")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201" , description = "busca do person pelo ID realizada com sucesso"),
+        @ApiResponse(responseCode = "400", description = "Id invalido",content = @Content)
+    })
+    public ResponseEntity<Person>findById(Long id);
 
 }
