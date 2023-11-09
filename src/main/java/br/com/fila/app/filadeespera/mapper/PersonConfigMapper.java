@@ -15,7 +15,7 @@ public class PersonConfigMapper {
         return modelMapper.map(personDto, Person.class);
     }
 
-     public static PersonDTO convertToDto (Person person){
+     public static PersonDTO convertToDTO (Person person){
         return modelMapper.map(person, PersonDTO.class);
     }
 

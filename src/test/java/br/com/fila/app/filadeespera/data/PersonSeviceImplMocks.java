@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import br.com.fila.app.filadeespera.model.entity.Person;
+import br.com.fila.app.filadeespera.model.enums.PersonType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -11,21 +12,21 @@ import lombok.NoArgsConstructor;
 public class PersonSeviceImplMocks {
 
     public static Person fullPersonDataMock() {
-        var person = Person.builder()
+
+        return Person.builder()
                 .id(1L)
                 .name("Daniel")
                 .bith(LocalDate.of(1994, 5, 11))
                 .cpf("13599177724")
                 .email("daniel.vdg@hotmail.com")
                 .sus("1484946848618")
+                .personType(PersonType.ADMIN)
                 .build();
-
-        return person;
     }
 
-
      public static Optional<Person> fullOptinalPersonDataMock() {
-        Optional<Person> person = Optional.of(Person.builder()
+
+         return Optional.of(Person.builder()
                 .id(1L)
                 .name("Daniel")
                 .bith(LocalDate.of(1994, 5, 11))
@@ -33,13 +34,10 @@ public class PersonSeviceImplMocks {
                 .email("daniel.vdg@hotmail.com")
                 .sus("1484946848618")
                 .build());
-
-        return person;
     }
-
     
     public static Person personNullDataMock() {
-        var person = Person.builder()
+        return  Person.builder()
                 .id(null)
                 .name(null)
                 .bith(LocalDate.now())
@@ -48,7 +46,6 @@ public class PersonSeviceImplMocks {
                 .sus(null)
                 .build();
 
-        return person;
     }
 
 }

@@ -9,7 +9,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,7 +19,7 @@ import br.com.fila.app.filadeespera.data.PersonSeviceImplMocks;
 import br.com.fila.app.filadeespera.exception.BusinessException;
 import br.com.fila.app.filadeespera.model.entity.Person;
 import br.com.fila.app.filadeespera.repository.PersonRepository;
-import br.com.fila.app.filadeespera.service.PersonService;
+import br.com.fila.app.filadeespera.service.impl.PersonServiceImpl;
 
 @SpringBootTest
 class PersonServiceImplTest {
@@ -32,11 +31,6 @@ class PersonServiceImplTest {
     @Mock
     private PersonRepository personRepository;
 
-    @Mock
-    private PersonService personService;
-
-    Person person;
-    
     @Test
     void shouldCreatePersonWithSuccess() {
         var person = PersonSeviceImplMocks.fullPersonDataMock();
@@ -50,22 +44,22 @@ class PersonServiceImplTest {
 
     @Test
     void shouldThrowBusinessExceptionWhenNotSave() {        
-        when(personRepository.save(person)).
-                thenThrow(new BusinessException("Erro ao salvar person"));
+        when(personRepository.save(PersonSeviceImplMocks.personNullDataMock())).
+                thenThrow(new BusinessException("Error ao salvar person"));
         
         BusinessException businessException  = assertThrows(
                 BusinessException.class, 
-                () -> personServiceImpl.save(person)
+                () -> personServiceImpl.save(PersonSeviceImplMocks.personNullDataMock())
         );
         
-        verify(personRepository,times(0)).save(person);
-        assertEquals("Erro ao salvar person", businessException.getMessage());
+        verify(personRepository,times(0)).save(PersonSeviceImplMocks.personNullDataMock());
+        assertEquals("Error ao salvar person", businessException.getMessage());
     }
 
     @Test
-    void shouldFindByIdPersonWithSucess(){
-        var personOptinal = PersonSeviceImplMocks.fullOptinalPersonDataMock();
-        when(personRepository.findById(anyLong())).thenReturn(personOptinal);
+    void shouldFindByIdPersonWithSuccess(){
+        var personOptional = PersonSeviceImplMocks.fullOptinalPersonDataMock();
+        when(personRepository.findById(anyLong())).thenReturn(personOptional);
         verify(personRepository,times(0)).findById(anyLong());
         verifyNoMoreInteractions(personRepository);
         Person response = personServiceImpl.findById(anyLong());
@@ -74,7 +68,7 @@ class PersonServiceImplTest {
     }
     
     @Test
-    void shouldThrowBusinessExcptionWhenPersonIdIsEmpty(){
+    void shouldThrowBusinessExceptionWhenPersonIdIsEmpty(){
        
         when(personRepository.findById(anyLong()))
                 .thenThrow(BusinessException.class);
@@ -88,5 +82,16 @@ class PersonServiceImplTest {
         
     }
 
-    
+    @Test
+    void shouldSaveWhenUpdateWithSuccess(){
+        var personUpdate = PersonSeviceImplMocks.fullPersonDataMock();
+      
+        when(personRepository.save(personUpdate)).thenReturn(personUpdate);
+
+        Person responseUpdate = personServiceImpl.update(personUpdate);
+
+        assertNotNull(responseUpdate);
+        assertEquals(Person.class, responseUpdate.getClass());
+    }
+
 }

@@ -16,13 +16,13 @@ public interface PersonController {
         @ApiResponse(responseCode = "201" , description = "Criação de cadastro criado com sucesso"),
         @ApiResponse(responseCode = "400", description = "Dados Invalídos",content = @Content)
     })
-    public ResponseEntity<Void> create(PersonDTO personDto);
+    ResponseEntity<Void> create(PersonDTO personDTO);
 
     @Operation(summary = "Realiza a busca do person pelo ID")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "201" , description = "busca do person pelo ID realizada com sucesso"),
         @ApiResponse(responseCode = "400", description = "Id invalido",content = @Content)
     })
-    public ResponseEntity<Person>findById(Long id);
+    ResponseEntity<Person>findById(Long id);
 
 }

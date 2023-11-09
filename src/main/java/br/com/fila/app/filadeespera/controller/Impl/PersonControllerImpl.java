@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/persons")
@@ -33,6 +31,7 @@ public class PersonControllerImpl implements PersonController {
     public ResponseEntity<Void> create(@RequestBody PersonDTO personDTO){
        
         Person person = personService.save(personDTOConvertToEntity(personDTO));
+
         return ResponseEntity.created(
             ServletUriComponentsBuilder.fromCurrentRequest()
                     .path("/{id}")
@@ -55,7 +54,17 @@ public class PersonControllerImpl implements PersonController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Person> update(@PathVariable String id, @RequestBody PersonDTO personDTO) {
-        return ResponseEntity.ok(personService.update(personDTOConvertToEntity(personDTO)));
+        
+        Person person = personService.update(personDTOConvertToEntity(personDTO));
+        
+        return ResponseEntity.created(
+            ServletUriComponentsBuilder.fromCurrentRequest()
+            .path("/{id}")
+            .buildAndExpand(person.getId())
+            .toUri()
+            
+        ).build();
+
     }
 
     @DeleteMapping("/{id}")
