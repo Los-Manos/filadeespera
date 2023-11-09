@@ -1,5 +1,5 @@
 # Use uma imagem base com o Java
-FROM adoptopenjdk:17-jre-hotspot
+FROM openjdk:17-oracle
 
 # Define o diretório de trabalho dentro do contêiner
 WORKDIR /src
