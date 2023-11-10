@@ -44,6 +44,7 @@ public class PersonSeviceImplMocks {
                 .cpf(null)
                 .email(null)
                 .sus(null)
+                .personType(null)
                 .build();
 
     }
