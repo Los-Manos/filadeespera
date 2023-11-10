@@ -2,6 +2,7 @@ package br.com.fila.app.filadeespera.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
@@ -53,6 +54,7 @@ class PersonServiceImplTest {
         );
         
         verify(personRepository,times(0)).save(PersonSeviceImplMocks.personNullDataMock());
+        assertNull(businessException);
         assertEquals("Error ao salvar person", businessException.getMessage());
     }
 
