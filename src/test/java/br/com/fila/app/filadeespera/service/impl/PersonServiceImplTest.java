@@ -2,7 +2,6 @@ package br.com.fila.app.filadeespera.service.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
@@ -20,7 +19,6 @@ import br.com.fila.app.filadeespera.data.PersonSeviceImplMocks;
 import br.com.fila.app.filadeespera.exception.BusinessException;
 import br.com.fila.app.filadeespera.model.entity.Person;
 import br.com.fila.app.filadeespera.repository.PersonRepository;
-import br.com.fila.app.filadeespera.service.impl.PersonServiceImpl;
 
 @SpringBootTest
 class PersonServiceImplTest {
@@ -54,7 +52,6 @@ class PersonServiceImplTest {
         );
         
         verify(personRepository,times(0)).save(PersonSeviceImplMocks.personNullDataMock());
-        assertNull(businessException);
         assertEquals("Error ao salvar person", businessException.getMessage());
     }
 

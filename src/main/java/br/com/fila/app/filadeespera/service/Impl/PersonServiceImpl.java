@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.fila.app.filadeespera.exception.BusinessException;
 import br.com.fila.app.filadeespera.model.entity.Person;
@@ -17,9 +16,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PersonServiceImpl implements PersonService {
 
-  private final static Logger logger = LogManager.getLogger("PersonServiceImpl");
+  private static final Logger logger = LogManager.getLogger("PersonServiceImpl");
 
-  @Autowired
   private PersonRepository personRepository;
 
   public Person save(Person person) {
