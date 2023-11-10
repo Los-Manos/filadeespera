@@ -47,7 +47,8 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: .
+        file: ./dockerfile
         push: true
         tags: 
-          ms-filadeespera-app/my-image:latest
+          filadeespera-app/my-image:latest
     

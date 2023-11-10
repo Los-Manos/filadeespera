@@ -43,13 +43,13 @@ class PersonServiceImplTest {
     }
 
     @Test
-    void shouldThrowBusinessExceptionWhenNotSave() {        
-        when(personRepository.save(PersonSeviceImplMocks.personNullDataMock())).
-                thenThrow(new BusinessException("Error ao salvar person"));
+    void shouldThrowBusinessExceptionWhenNotSave() {     
+        var personNull = PersonSeviceImplMocks.personNullDataMock();
+        when(personRepository.save(personNull))
+                .thenThrow(new BusinessException("Error ao salvar person"));
         
-        BusinessException businessException  = assertThrows(
-                BusinessException.class, 
-                () -> personServiceImpl.save(PersonSeviceImplMocks.personNullDataMock())
+        BusinessException businessException  = assertThrows(BusinessException.class, 
+                () -> personServiceImpl.save(personNull)
         );
         
         verify(personRepository,times(0)).save(PersonSeviceImplMocks.personNullDataMock());
