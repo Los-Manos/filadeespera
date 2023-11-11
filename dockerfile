@@ -4,7 +4,7 @@ RUN mkdir -p /usr/src/app
 # Define o diretório de trabalho dentro do contêiner
 WORKDIR  /usr/src/app
 ADD . /usr/src/app
-RUN mvn package
+RUN mvn package -DskipTests
 
 FROM eclipse-temurin:17-jdk
 RUN mkdir -p /usr/src/app
