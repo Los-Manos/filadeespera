@@ -11,8 +11,8 @@ public class PersonConfigMapper {
 
     private static final ModelMapper modelMapper = new ModelMapper(){};
 
-    public static Person convertToEntity (PersonDTO personDto){
-        return modelMapper.map(personDto, Person.class);
+    public static Person convertToEntity (PersonDTO personDTO){
+        return modelMapper.map(personDTO, Person.class);
     }
 
      public static PersonDTO convertToDTO (Person person){
