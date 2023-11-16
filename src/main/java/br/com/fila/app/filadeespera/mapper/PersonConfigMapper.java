@@ -2,7 +2,7 @@ package br.com.fila.app.filadeespera.mapper;
 
 import org.modelmapper.ModelMapper;
 
-import br.com.fila.app.filadeespera.model.dto.PersonDTO;
+import br.com.fila.app.filadeespera.model.dto.PersonDto;
 import br.com.fila.app.filadeespera.model.entity.Person;
 
 public class PersonConfigMapper {
@@ -11,12 +11,12 @@ public class PersonConfigMapper {
 
     private static final ModelMapper modelMapper = new ModelMapper(){};
 
-    public static Person convertToEntity (PersonDTO personDto){
+    public static Person convertToEntity (PersonDto personDto){
         return modelMapper.map(personDto, Person.class);
     }
 
-     public static PersonDTO convertToDto (Person person){
-        return modelMapper.map(person, PersonDTO.class);
+     public static PersonDto convertToDto (Person person){
+        return modelMapper.map(person, PersonDto.class);
     }
 
 }

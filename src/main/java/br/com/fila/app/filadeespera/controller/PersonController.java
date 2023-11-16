@@ -1,7 +1,7 @@
 package br.com.fila.app.filadeespera.controller;
 
 import org.springframework.http.ResponseEntity;
-import br.com.fila.app.filadeespera.model.dto.PersonDTO;
+import br.com.fila.app.filadeespera.model.dto.PersonDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -15,6 +15,6 @@ public interface PersonController {
         @ApiResponse(responseCode = "201" , description = "Criação de cadastro criado com sucesso"),
         @ApiResponse(responseCode = "400", description = "Dados Invalídos",content = @Content)
     })
-    public ResponseEntity<Void> create(PersonDTO personDTO);
+    public ResponseEntity<Void> create(PersonDto personDto);
 
 }
