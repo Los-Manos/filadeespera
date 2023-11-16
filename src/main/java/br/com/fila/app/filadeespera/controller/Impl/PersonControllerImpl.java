@@ -1,5 +1,4 @@
-package br.com.fila.app.filadeespera.controller.Impl;
-
+package br.com.fila.app.filadeespera.controller.impl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,7 +8,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.fila.app.filadeespera.controller.PersonController;
 import br.com.fila.app.filadeespera.mapper.PersonConfigMapper;
-import br.com.fila.app.filadeespera.model.dto.PersonDto;
+import br.com.fila.app.filadeespera.model.dto.PersonDTO;
 import br.com.fila.app.filadeespera.model.entity.Person;
 import br.com.fila.app.filadeespera.service.PersonService;
 import lombok.AllArgsConstructor;
@@ -22,7 +21,7 @@ public class PersonControllerImpl implements PersonController {
     private final PersonService personService;
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody PersonDto personDto){
+    public ResponseEntity<Void> create(@RequestBody PersonDTO personDto){
        
         Person person = PersonConfigMapper.convertToEntity(personDto);        
            person = personService.save(person);
