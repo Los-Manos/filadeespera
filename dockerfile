@@ -1,13 +1,11 @@
-FROM maven:3.8.5-openjdk-17 as builder
-RUN mkdir -p /app
-WORKDIR  /app
-COPY pom.xml . 
-COPY src ./src
-RUN mvn clean install
+FROM maven:3.9.5-eclipse-temurin-17 as builder
+WORKDIR /build
+COPY . .
+RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:17-jdk
-RUN mkdir -p /usr/src/app
 WORKDIR /app
-COPY --from=builder /app/target/filadeespera-0.0.1-SNAPSHOT.jar .  
+COPY --from=builder /build/target/*.jar ./app.jar 
+EXPOSE 8080 
 
-CMD ["java", "-jar", "filadeespera-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"] 
