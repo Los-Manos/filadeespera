@@ -30,8 +30,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Verificando depedências
+      run: mvn dependency:purge-local-repository && 
     - name: Build with Maven package
-      run: mvn dependency:purge-local-repository && mvn -B package --file pom.xml 
+      run: mvn -B package --file pom.xml 
    
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
