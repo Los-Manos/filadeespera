@@ -31,7 +31,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Verificando depedências
-      run: mvn dependency:purge-local-repository && 
+      run: mvn dependency:purge-local-repository 
     - name: Build with Maven package
       run: mvn -B package --file pom.xml 
    
